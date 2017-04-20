@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:43:38 by aazri             #+#    #+#             */
-/*   Updated: 2017/04/19 18:18:54 by aazri            ###   ########.fr       */
+/*   Updated: 2017/04/20 12:52:26 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,20 @@ void	digit_checker(const char **argv)
 {
 	unsigned int i;
 	unsigned int j;
+	unsigned int minus;
 
 	i = 1;
 	while (argv[i])
 	{
 		j = 0;
+		minus = 0;
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == FALSE)
 			{
-				handle_error(ONE_ARG_IS_NOT_DIGIT);
+				minus++;
+				if (argv[i][j] != '-' || argv[i][j + 1] == '\0' || minus > 1)
+					handle_error(ONE_ARG_IS_NOT_DIGIT);
 			}
 			j++;
 		}
@@ -58,7 +62,7 @@ void	length_checker(const char *argv[])
 
 void	stack_init(int argc, char const *argv[], t_stack **a)
 {
-	unsigned int i;
+	int i;
 
 	i = argc;
 	while (--i)

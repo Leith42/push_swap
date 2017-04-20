@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 13:33:06 by aazri             #+#    #+#             */
-/*   Updated: 2017/04/19 18:18:57 by aazri            ###   ########.fr       */
+/*   Updated: 2017/04/19 20:54:02 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,12 @@ int	main(int argc, char const *argv[])
 	if (argc > 1)
 	{
 		parsing_args(argv, argc, &a);
-		while (a)
-		{
-			printf("%d\n", a->data);
-			a = a->next;
-		}
-	/*	//get_instructions();
+	//	get_instructions();
 		stack_print(a);
 		if (check_stack_order(a) == true)
 			ft_printf("\nOK\n");
 		else
-			ft_printf("\nKO\n");*/
+			ft_printf("\nKO\n");
 	}
 	return (1);
 }
