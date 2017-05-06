@@ -15,10 +15,10 @@
 intmax_t	ft_atol(const char *str, unsigned int base)
 {
 	intmax_t result;
-	bool negatif;
+	bool negative;
 
 	result = 0;
-	negatif = 0;
+	negative = 0;
 	if (str)
 	{
 		while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
@@ -26,7 +26,7 @@ intmax_t	ft_atol(const char *str, unsigned int base)
 			str++;
 		if (*str == '-')
 		{
-			negatif = 1;
+			negative = 1;
 			str++;
 		}
 		else if (*str == '+')
@@ -38,5 +38,5 @@ intmax_t	ft_atol(const char *str, unsigned int base)
 				result *= base;
 		}
 	}
-	return (negatif ? -result : result);
+	return (negative ? -result : result);
 }
