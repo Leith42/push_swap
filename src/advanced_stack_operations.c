@@ -12,38 +12,26 @@
 
 #include "push_swap.h"
 
-int	swap(t_stack **a, t_stack **b, char *ins)
+void	swap(t_stack **s1, t_stack **s2)
 {
 	int tmp;
 
-	if ((ft_strcmp(ins, SWAP_A) == 0 || ft_strcmp(ins, SWAP_BOTH) == 0))
+	if (*s1 && (*s1)->next)
 	{
-		if (*a && (*a)->next)
-		{
-			tmp = (*a)->data;
-			(*a)->data = (*a)->next->data;
-			(*a)->next->data = tmp;
-		}
+		tmp = (*s1)->data;
+		(*s1)->data = (*s1)->next->data;
+		(*s1)->next->data = tmp;
 	}
-	if ((ft_strcmp(ins, SWAP_B) == 0 || ft_strcmp(ins, SWAP_BOTH) == 0))
+	if (*s2 && (*s2)->next)
 	{
-		if (*b && (*b)->next)
-		{
-			tmp = (*b)->data;
-			(*b)->data = (*b)->next->data;
-			(*b)->next->data = tmp;
-		}
+		tmp = (*s2)->data;
+		(*s2)->data = (*s2)->next->data;
+		(*s2)->next->data = tmp;
 	}
-	return (true);
 }
 
-int	push(t_stack **a, t_stack **b, char *ins)
+int	push(t_stack **dest, t_stack **src)
 {
-	t_stack **dest;
-	t_stack **src;
-
-	src = ft_strcmp(ins, PUSH_A) == 0 ? b : a;
-	dest = ft_strcmp(ins, PUSH_A) == 0 ? a : b;
 	if (*src)
 	{
 		if (stack_push(dest, (*src)->data) == false)
@@ -53,11 +41,11 @@ int	push(t_stack **a, t_stack **b, char *ins)
 	return (true);
 }
 
-int	rotate(t_stack **a, t_stack **b, char *ins)
+int	rotate(t_stack **a, t_stack **b)
 {
 	t_stack *queueNode;
 
-	if ((ft_strcmp(ins, ROT_A) == 0 || ft_strcmp(ins, ROT_BOTH) == 0) && *a)
+	if (a && *a)
 	{
 		queueNode = *a;
 		while (queueNode->next)
@@ -68,7 +56,7 @@ int	rotate(t_stack **a, t_stack **b, char *ins)
 		queueNode->next->next = NULL;
 		stack_pop(a);
 	}
-	if ((ft_strcmp(ins, ROT_B) == 0 || ft_strcmp(ins, ROT_BOTH) == 0) && *b)
+	if (b && *b)
 	{
 		queueNode = *b;
 		while (queueNode->next)
@@ -82,12 +70,11 @@ int	rotate(t_stack **a, t_stack **b, char *ins)
 	return (true);
 }
 
-int	revrot(t_stack **a, t_stack **b, char *ins)
+int	revrot(t_stack **a, t_stack **b)
 {
 	t_stack *queueNode;
 
-	if ((ft_strcmp(ins, REVROT_A) == 0 || ft_strcmp(ins, REVROT_BOTH) == 0)
-	&& ((*a) && (*a)->next))
+	if ((*a) && (*a)->next)
 	{
 		queueNode = *a;
 		while (queueNode->next->next)
@@ -97,8 +84,7 @@ int	revrot(t_stack **a, t_stack **b, char *ins)
 		free(queueNode->next);
 		queueNode->next = NULL;
 	}
-	if ((ft_strcmp(ins, REVROT_B) == 0 || ft_strcmp(ins, REVROT_BOTH) == 0)
-	&& ((*b) && (*b)->next))
+	if ((*b) && (*b)->next)
 	{
 		queueNode = *b;
 		while (queueNode->next->next)
@@ -111,44 +97,30 @@ int	revrot(t_stack **a, t_stack **b, char *ins)
 	return (true);
 }
 
-void	get_inst_func_array(t_inst_func **tab)
+int	exec_instructions(char *command, t_stack **a, t_stack **b)
 {
-	(*tab)->ptrfunc = &swap;
-	(*tab)->key = SWAP_A;
-	(*tab + 1)->ptrfunc = &swap;
-	(*tab + 1)->key = SWAP_B;
-	(*tab + 2)->ptrfunc = &swap;
-	(*tab + 2)->key = SWAP_BOTH;
-	(*tab + 3)->ptrfunc = &push;
-	(*tab + 3)->key = PUSH_A;
-	(*tab + 4)->ptrfunc = &push;
-	(*tab + 4)->key = PUSH_B;
-	(*tab + 5)->ptrfunc = &rotate;
-	(*tab + 5)->key = ROT_A;
-	(*tab + 6)->ptrfunc = &rotate;
-	(*tab + 6)->key = ROT_B;
-	(*tab + 7)->ptrfunc = &rotate;
-	(*tab + 7)->key = ROT_BOTH;
-	(*tab + 8)->ptrfunc = &revrot;
-	(*tab + 8)->key = REVROT_A;
-	(*tab + 9)->ptrfunc = &revrot;
-	(*tab + 9)->key = REVROT_B;
-	(*tab + 10)->ptrfunc = &revrot;
-	(*tab + 10)->key = REVROT_BOTH;
-	(*tab + 11)->ptrfunc = NULL;
-	(*tab + 11)->key = NULL;
-}
-
-int	exec_instructions(char *instructions, t_stack **a, t_stack **b, t_inst_func *tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i].key != NULL)
-	{
-		if (ft_strcmp(tab[i].key, instructions) == 0)
-			return (tab[i].ptrfunc(a, b, instructions));
-		i++;
-	}
-	return (false);
+	if (command == SWAP_A)
+		swap(a, NULL);
+	else if (command == SWAP_B)
+		swap(b, NULL);
+	else if (command == SWAP_BOTH)
+		swap(a, b);
+	else if (command == PUSH_A)
+		return (push(a, b));
+	else if (command == PUSH_B)
+		return (push(b, a));
+	else if (command == ROT_A)
+		return (rotate(a, NULL));
+	else if (command == ROT_B)
+		return (rotate(b, NULL));
+	else if (command == ROT_BOTH)
+		return (rotate(a, b));
+	else if (command == REVROT_A)
+		return (revrot(a, NULL));
+	else if (command == REVROT_B)
+		return (revrot(b, NULL));
+	else if (command == REVROT_BOTH)
+		return (revrot(a, b));
+	else
+		return (false);
 }

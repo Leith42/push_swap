@@ -66,8 +66,8 @@ int		arg_validity_checker(const char *arg, t_options **opt);
 int		length_checker(const char *argv[]);
 int		duplicate_checker(const char *argv[]);
 int		stack_init(int argc, char const *argv[], t_stack **a);
-int		instructions_parse(t_stack **a, t_stack **b, t_options **opt, int *inst_nb);
-int		exec_instructions(char *instructions, t_stack **a, t_stack **b, t_inst_func *tab);
+int		instructions_parsing(t_stack **a, t_stack **b, t_options **opt, int *inst_nb);
+int		exec_instructions(char *command, t_stack **a, t_stack **b);
 /*
 	PUSH_SWAP
 */
