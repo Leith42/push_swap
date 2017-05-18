@@ -15,19 +15,19 @@
 int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 {
 	int gnl;
-	char *instructions;
+	char *command;
 
 	*inst_nb = 0;
 	stack_print(*a, *b);
 	ft_printf("Enter instructions :\n");
-	while ((gnl = get_next_line(0, &instructions)))
+	while ((gnl = get_next_line(0, &command)))
 	{
-		if (exec_instructions(instructions, a, b) == false)
+		if (exec_instructions(command, a, b) == false)
 			return (ERROR);
 		(*inst_nb)++;
 		if (opt->screen_refresh)
 			stack_print(*a, *b);
-		free(instructions);
+		free(command);
 	}
 	return (gnl);
 }

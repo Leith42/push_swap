@@ -37,6 +37,7 @@ typedef struct	s_stack
 typedef struct	s_options
 {
 	bool		screen_refresh;
+	bool		display_commands;
 }				t_options;
 
 typedef struct	s_inst_func
@@ -71,12 +72,12 @@ int		descending_check(t_stack *stack);
 */
 
 int		instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb);
-int		args_parse(const char *argv[], int argc, t_stack *a, t_options *opt);
+int		args_parse(const char *argv[], int argc, t_stack **a, t_options **opt);
 int		arg_validity_checker(const char *arg, t_options *opt);
 int		duplicate_checker(const char *argv[]);
 int		exec_instructions(char *command, t_stack **a, t_stack **b);
 int		stack_init(int argc, char const *argv[], t_stack **a);
-int		browse_arguments(const char *argv[], t_options *opt);
+int		browse_arguments(const char *argv[], t_options **opt);
 int		length_checker(const char *argv[]);
 void	stock_instruction(t_list **inst, char *str);
 int		stack_len(t_stack **s);
@@ -86,10 +87,11 @@ int		get_min(t_stack *s);
 	UTILS
 */
 
-int		handle_error(t_stack *a, t_stack *b);
+void	handle_error(t_stack *a, t_stack *b);
 void	free_stack(t_stack *a, t_stack *b);
 void	clear_list(void *data, size_t n);
 void	stack_print(t_stack *a, t_stack *b);
+void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb);
 long	ft_atol(const char *str, unsigned int base);
 
 #endif

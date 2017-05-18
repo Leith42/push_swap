@@ -74,7 +74,7 @@ int	revrot(t_stack **a, t_stack **b)
 {
 	t_stack *queueNode;
 
-	if (a && (*a)->next)
+	if (a && *a && (*a)->next)
 	{
 		queueNode = *a;
 		while (queueNode->next->next)
@@ -84,7 +84,7 @@ int	revrot(t_stack **a, t_stack **b)
 		free(queueNode->next);
 		queueNode->next = NULL;
 	}
-	if (b && (*b)->next)
+	if (b && *b && (*b)->next)
 	{
 		queueNode = *b;
 		while (queueNode->next->next)
@@ -123,4 +123,5 @@ int	exec_instructions(char *command, t_stack **a, t_stack **b)
 		return (revrot(a, b));
 	else
 		return (false);
+	return (true);
 }

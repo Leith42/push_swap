@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-int	args_parse(const char **argv, int argc, t_stack *s, t_options *opt)
+int	args_parse(const char **argv, int argc, t_stack **s, t_options **opt)
 {
 	if (opt)
 	{
-		if (opt = ft_memalloc(sizeof(t_options)) == NULL)
+		if ((*opt = ft_memalloc(sizeof(t_options))) == NULL)
 			return (false);
 	}
 	if (browse_arguments(argv, opt) == false)

@@ -32,5 +32,8 @@
 *.dSYM/
 .idea/
 test/
+build/
 CMakeLists.txt
 cmake-build-debug/
+push_swap
+checker

@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+void	print_instructions(t_list *i)
+{
+	t_list *tmp;
+
+	while (i)
+	{
+		ft_printf("%s\n", i->content);
+		tmp = i;
+		i = i->next;
+		free(tmp);
+	}
+}
+
 void	stock_instruction(t_list **inst, char *str)
 {
 	t_list *tmp;
@@ -45,16 +58,10 @@ int main(int argc, char const *argv[])
 			ft_lstdel(&instructions, &clear_list);
 			handle_error(a, b);
 		}
-		while (instructions)
-		{
-			ft_printf("%s\n", instructions->content);
-			instructions = instructions->next;
-		}
+		print_instructions(instructions);
 		free_stack(a, b);
-		if (instructions)
-			free(instructions);
 	}
 	else
-		ft_printf("Usage: ./push_swap -2 -1 0 1 2...\n");
+		ft_putendl("Usage: ./push_swap -2 -1 0 1 2...");
 	return (EXIT_SUCCESS);
 }

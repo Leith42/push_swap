@@ -53,6 +53,7 @@ int rot_min_to_head(t_stack **a, t_stack **b, t_list **inst)
 			stock_instruction(inst, REVROT_A);
 		}
 	}
+	return (true);
 }
 
 int check_lists_status(t_stack **a, t_stack **b)
