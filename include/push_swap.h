@@ -46,31 +46,50 @@ typedef struct	s_inst_func
 }				t_inst_func;
 
 /*
-	UTILS
-*/
-int		stack_push(t_stack **s_top, int data);
-void	stack_pop(t_stack **s_top);
-int		handle_error(t_stack **a, t_stack **b, t_options **opt);
-void	clear(t_stack **a, t_stack **b, t_options **opt);
-/*
-	CHECKER
-*/
-int		check_stack_order(t_stack *a, t_stack *b);
-void	get_inst_func_array(t_inst_func **tab);
-void	stack_print(t_stack *a, t_stack *b);
-long	ft_atol(const char *str, unsigned int base);
-void	clear_list(void *data, size_t n);
-int		args_parse(const char *argv[], int argc, t_stack **a, t_options **opt);
-int		browse_arguments(const char *argv[], t_options **opt);
-int		arg_validity_checker(const char *arg, t_options **opt);
-int		length_checker(const char *argv[]);
-int		duplicate_checker(const char *argv[]);
-int		stack_init(int argc, char const *argv[], t_stack **a);
-int		instructions_parsing(t_stack **a, t_stack **b, t_options **opt, int *inst_nb);
-int		exec_instructions(char *command, t_stack **a, t_stack **b);
-/*
-	PUSH_SWAP
+	OPERATIONS
 */
 
+int		stack_push(t_stack **s_top, int data);
+void	stack_pop(t_stack **s_top);
+void	swap(t_stack *s1, t_stack *s2);
+int		push(t_stack **dest, t_stack **src);
+int		rotate(t_stack **a, t_stack **b);
+int		revrot(t_stack **a, t_stack **b);
+int		push_all_in_a(t_stack **a, t_stack **b, t_list **inst);
+
+
+/*
+	ALGORITHM
+*/
+
+int		push_swap(t_stack **a, t_stack **b, t_list **inst);
+int		ascending_check(t_stack *stack);
+int		descending_check(t_stack *stack);
+
+/*
+	PARSING
+*/
+
+int		instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb);
+int		args_parse(const char *argv[], int argc, t_stack *a, t_options *opt);
+int		arg_validity_checker(const char *arg, t_options *opt);
+int		duplicate_checker(const char *argv[]);
+int		exec_instructions(char *command, t_stack **a, t_stack **b);
+int		stack_init(int argc, char const *argv[], t_stack **a);
+int		browse_arguments(const char *argv[], t_options *opt);
+int		length_checker(const char *argv[]);
+void	stock_instruction(t_list **inst, char *str);
+int		stack_len(t_stack **s);
+int		get_min(t_stack *s);
+
+/*
+	UTILS
+*/
+
+int		handle_error(t_stack *a, t_stack *b);
+void	free_stack(t_stack *a, t_stack *b);
+void	clear_list(void *data, size_t n);
+void	stack_print(t_stack *a, t_stack *b);
+long	ft_atol(const char *str, unsigned int base);
 
 #endif

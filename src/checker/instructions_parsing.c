@@ -12,11 +12,10 @@
 
 #include "push_swap.h"
 
-int	instructions_parsing(t_stack **a, t_stack **b, t_options **opt, int *inst_nb)
+int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 {
 	int gnl;
 	char *instructions;
-	t_inst_func *tab;
 
 	*inst_nb = 0;
 	stack_print(*a, *b);
@@ -26,7 +25,7 @@ int	instructions_parsing(t_stack **a, t_stack **b, t_options **opt, int *inst_nb
 		if (exec_instructions(instructions, a, b) == false)
 			return (ERROR);
 		(*inst_nb)++;
-		if ((*opt)->screen_refresh)
+		if (opt->screen_refresh)
 			stack_print(*a, *b);
 		free(instructions);
 	}

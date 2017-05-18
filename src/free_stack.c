@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear.c                                            :+:      :+:    :+:   */
+/*   clear_list.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,24 +12,22 @@
 
 #include "push_swap.h"
 
-void	clear(t_stack **a, t_stack **b, t_options **opt)
+void	free_stack(t_stack *a, t_stack *b)
 {
 	t_stack	*tmp_s;
 
-	while (a && *a)
+	while (a)
 	{
-		tmp_s = (*a)->next;
-		free(*a);
-		*a = tmp_s;
+		tmp_s = a->next;
+		free(a);
+		a = tmp_s;
 	}
-	while (b && *b)
+	while (b)
 	{
-		tmp_s = (*b)->next;
-		free(*b);
-		*b = tmp_s;
+		tmp_s = b->next;
+		free(b);
+		b = tmp_s;
 	}
-	if (opt && *opt)
-		free(*opt);
 }
 
 void	clear_list(void *data, size_t n)

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	browse_arguments(const char **argv, t_options **opt)
+int	browse_arguments(const char **argv, t_options *opt)
 {
 	unsigned int i;
 
@@ -26,7 +26,7 @@ int	browse_arguments(const char **argv, t_options **opt)
 	return (true);
 }
 
-int	arg_validity_checker(const char *arg, t_options **opt)
+int	arg_validity_checker(const char *arg, t_options *opt)
 {
 	unsigned int i;
 
@@ -41,7 +41,7 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 		}
 	}
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'v' && arg[i + 2] == '\0')
-		(*opt)->screen_refresh = 1;
+		opt->screen_refresh = 1;
 	else
 		return (false);
 	return (true);

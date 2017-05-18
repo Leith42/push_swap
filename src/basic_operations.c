@@ -43,20 +43,36 @@ void	stack_pop(t_stack **s_top)
 	}
 }
 
-int		check_stack_order(t_stack *a, t_stack *b)
+int		ascending_check(t_stack *stack)
 {
 	int data;
 	t_stack *tmp;
 
-	tmp = a;
-	if (b)
-		return (false);
+	tmp = stack;
 	while (tmp)
 	{
 		data = tmp->data;
 		if ((tmp = tmp->next) != NULL)
 		{
 			if (data > tmp->data)
+				return (false);
+		}
+	}
+	return (true);
+}
+
+int		descending_check(t_stack *stack)
+{
+	int data;
+	t_stack *tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		data = tmp->data;
+		if ((tmp = tmp->next) != NULL)
+		{
+			if (data < tmp->data)
 				return (false);
 		}
 	}

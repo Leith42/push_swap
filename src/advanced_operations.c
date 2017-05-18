@@ -12,27 +12,27 @@
 
 #include "push_swap.h"
 
-void	swap(t_stack **s1, t_stack **s2)
+void	swap(t_stack *s1, t_stack *s2)
 {
 	int tmp;
 
-	if (*s1 && (*s1)->next)
+	if (s1 && s1->next)
 	{
-		tmp = (*s1)->data;
-		(*s1)->data = (*s1)->next->data;
-		(*s1)->next->data = tmp;
+		tmp = s1->data;
+		s1->data = s1->next->data;
+		s1->next->data = tmp;
 	}
-	if (*s2 && (*s2)->next)
+	if (s2 && s2->next)
 	{
-		tmp = (*s2)->data;
-		(*s2)->data = (*s2)->next->data;
-		(*s2)->next->data = tmp;
+		tmp = s2->data;
+		s2->data = s2->next->data;
+		s2->next->data = tmp;
 	}
 }
 
 int	push(t_stack **dest, t_stack **src)
 {
-	if (*src)
+	if (src && *src)
 	{
 		if (stack_push(dest, (*src)->data) == false)
 			return (false);
@@ -45,7 +45,7 @@ int	rotate(t_stack **a, t_stack **b)
 {
 	t_stack *queueNode;
 
-	if (a && *a)
+	if (a)
 	{
 		queueNode = *a;
 		while (queueNode->next)
@@ -56,7 +56,7 @@ int	rotate(t_stack **a, t_stack **b)
 		queueNode->next->next = NULL;
 		stack_pop(a);
 	}
-	if (b && *b)
+	if (b)
 	{
 		queueNode = *b;
 		while (queueNode->next)
@@ -74,7 +74,7 @@ int	revrot(t_stack **a, t_stack **b)
 {
 	t_stack *queueNode;
 
-	if ((*a) && (*a)->next)
+	if (a && (*a)->next)
 	{
 		queueNode = *a;
 		while (queueNode->next->next)
@@ -84,7 +84,7 @@ int	revrot(t_stack **a, t_stack **b)
 		free(queueNode->next);
 		queueNode->next = NULL;
 	}
-	if ((*b) && (*b)->next)
+	if (b && (*b)->next)
 	{
 		queueNode = *b;
 		while (queueNode->next->next)
@@ -99,27 +99,27 @@ int	revrot(t_stack **a, t_stack **b)
 
 int	exec_instructions(char *command, t_stack **a, t_stack **b)
 {
-	if (command == SWAP_A)
-		swap(a, NULL);
-	else if (command == SWAP_B)
-		swap(b, NULL);
-	else if (command == SWAP_BOTH)
-		swap(a, b);
-	else if (command == PUSH_A)
+	if (ft_strcmp(command, SWAP_A) == 0)
+		swap(*a, NULL);
+	else if (ft_strcmp(command, SWAP_B) == 0)
+		swap(*b, NULL);
+	else if (ft_strcmp(command, SWAP_BOTH) == 0)
+		swap(*a, *b);
+	else if (ft_strcmp(command, PUSH_A) == 0)
 		return (push(a, b));
-	else if (command == PUSH_B)
+	else if (ft_strcmp(command, PUSH_B) == 0)
 		return (push(b, a));
-	else if (command == ROT_A)
+	else if (ft_strcmp(command, ROT_A) == 0)
 		return (rotate(a, NULL));
-	else if (command == ROT_B)
+	else if (ft_strcmp(command, ROT_B) == 0)
 		return (rotate(b, NULL));
-	else if (command == ROT_BOTH)
+	else if (ft_strcmp(command, ROT_BOTH) == 0)
 		return (rotate(a, b));
-	else if (command == REVROT_A)
+	else if (ft_strcmp(command, REVROT_A) == 0)
 		return (revrot(a, NULL));
-	else if (command == REVROT_B)
+	else if (ft_strcmp(command, REVROT_B) == 0)
 		return (revrot(b, NULL));
-	else if (command == REVROT_BOTH)
+	else if (ft_strcmp(command, REVROT_BOTH) == 0)
 		return (revrot(a, b));
 	else
 		return (false);
