@@ -1,6 +1,6 @@
 TARGET_PS = push_swap
 TARGET_C = checker
-CC = gcc
+CC = @gcc
 LIBFT_PATH = ./libft/
 LIBFT_BIN = $(LIBFT_PATH)libft.a
 INCLUDE = ./include/
@@ -16,7 +16,6 @@ GENERAL_SRC = \
 		basic_operations.c \
 		args_parsing.c \
 		free_stack.c \
-		ft_atol.c \
 		printer.c \
 		handle_args.c \
 		handle_error.c \

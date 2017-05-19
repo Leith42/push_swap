@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 14:21:01 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/03 14:02:20 by aazri            ###   ########.fr       */
+/*   Updated: 2017/05/19 20:18:47 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int		rotate(t_stack **a, t_stack **b);
 int		revrot(t_stack **a, t_stack **b);
 int		push_all_in_a(t_stack **a, t_stack **b, t_list **inst);
 
-
 /*
 	ALGORITHM
 */
@@ -92,6 +91,5 @@ void	free_stack(t_stack *a, t_stack *b);
 void	clear_list(void *data, size_t n);
 void	stack_print(t_stack *a, t_stack *b);
 void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb);
-long	ft_atol(const char *str, unsigned int base);
 
 #endif
