@@ -57,7 +57,7 @@ clean:
 fclean: clean
 	@make -C $(LIBFT_PATH) fclean
 	@$(RM) $(TARGET_C) $(TARGET_PS)
-	@echo "\033[1;34mpush_swap\t\033[1;33mCleaning everything\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mpush_swap\t\033[1;33mCleaning exe\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
 
