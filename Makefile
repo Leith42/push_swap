@@ -31,24 +31,24 @@ CHECKER_SRC = \
 		checker.c \
 		instructions_parsing.c \
 
-SRC_OBJ = $(SRC:.c=.o)
-PUSH_SWAP_OBJ = $(PUSH_SWAP:.c=.o)
-CHECKER_OBJ = $(CHECKER:.c=.o)
+SRC_OBJ = $(GENERAL_SRC:.c=.o)
+PUSH_SWAP_OBJ = $(PUSH_SWAP_SRC:.c=.o)
+CHECKER_OBJ = $(CHECKER_SRC:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH), $(GENERAL_SRC))
-PUSH_SWAP = $(addprefix $(PUSH_SWAP_PATH), $(PUSH_SWAP_SRC))
-CHECKER = $(addprefix $(CHECKER_PATH), $(CHECKER_SRC))
+SRC = $(addprefix $(SRC_PATH), $(SRC_OBJ))
+PUSH_SWAP = $(addprefix $(PUSH_SWAP_PATH), $(PUSH_SWAP_OBJ))
+CHECKER = $(addprefix $(CHECKER_PATH), $(CHECKER_OBJ))
 
 all: $(TARGET_PS) $(TARGET_C)
 
-$(TARGET_PS): $(PUSH_SWAP) $(SRC)
+$(TARGET_PS): $(SRC) $(PUSH_SWAP)
 	@make -C $(LIBFT_PATH)
 	@$(CC) $(CFLAGS) $(PUSH_SWAP) $(SRC) -o $@ $(LIBFT_BIN)
 	@echo "\033[1;34mpush_swap\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 
 $(TARGET_C): $(CHECKER)
 	@$(CC) $(CFLAGS) $(CHECKER) $(SRC) -o $@ $(LIBFT_BIN)
-	@echo "\033[1;34mchecker\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mchecker\t\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 
 clean:
 	@make -C $(LIBFT_PATH) clean
@@ -57,7 +57,6 @@ clean:
 
 fclean: clean
 	@make -C $(LIBFT_PATH) fclean
-	@$(RM) $(SRC) $(PUSH_SWAP) $(CHECKER)
 	@$(RM) $(TARGET_C) $(TARGET_PS)
 	@echo "\033[1;34mpush_swap\t\033[1;33mCleaning everything\t\033[0;32m[OK]\033[0m"
 
