@@ -14,16 +14,26 @@
 
 int	browse_arguments(const char **argv, t_options **opt)
 {
-	unsigned int i;
+	int i;
+	bool digit;
 
 	i = 1;
+	digit = false;
 	while (argv[i])
 	{
 		if (arg_validity_checker(argv[i], opt) == false)
 			return (false);
+		if (digit == false)
+		{
+			if ((argv[i][0] == '-' && ft_isdigit(argv[i][1]) == true)
+				|| (ft_isdigit(argv[i][0]) == true))
+			{
+				digit = true;
+			}
+		}
 		i++;
 	}
-	return (true);
+	return (digit);
 }
 
 int	arg_validity_checker(const char *arg, t_options **opt)
@@ -41,9 +51,15 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 		}
 	}
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'v' && arg[i + 2] == '\0')
-		(*opt)->screen_refresh = true;
+		(*opt)->screen_refresh = (*opt)->silence == true ? false : true;
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'i' && arg[i + 2] == '\0')
-		(*opt)->display_commands = true;
+		(*opt)->display_commands = (*opt)->silence == true ? false : true;
+	else if (opt && arg[i] == '-' && arg[i + 1] == 's' && arg[i + 2] == '\0')
+	{
+		(*opt)->silence = true;
+		(*opt)->screen_refresh = false;
+		(*opt)->display_commands = false;
+	}
 	else
 		return (false);
 	return (true);

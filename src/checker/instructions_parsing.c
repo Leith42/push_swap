@@ -18,8 +18,11 @@ int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 	char *command;
 
 	*inst_nb = 0;
-	stack_print(*a, *b);
-	ft_printf("Enter instructions :\n");
+	if (opt->silence == false)
+	{
+		stack_print(*a, *b);
+		ft_printf("Enter instructions :\n");
+	}
 	while ((gnl = get_next_line(0, &command)))
 	{
 		if (exec_instructions(command, a, b) == false)

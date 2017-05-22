@@ -62,6 +62,6 @@ int main(int argc, char const *argv[])
 		free_stack(a, b);
 	}
 	else
-		ft_putendl("Usage: ./push_swap -2 -1 0 1 2...");
+		ft_putendl("Usage: ./push_swap 1 2 3 4...");
 	return (EXIT_SUCCESS);
 }

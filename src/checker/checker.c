@@ -29,11 +29,16 @@ int	main(int argc, char const *argv[])
 		{
 			handle_error(a, b);
 		}
-		print_result(a, b, inst_nb);
+		print_result(a, b, o, inst_nb);
 		free_stack(a, b);
 		free(o);
 	}
 	else
-		ft_putendl("Usage: ./checker 1 2 3 4... [-i] [-v]");
+	{
+		ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] [-s]");
+		ft_putendl("[-i]: displays the number of instructions executed.");
+		ft_putendl("[-v]: displays the current state of the stacks.");
+		ft_putendl("[-s]: only displays the KO or OK status of the stack.");
+	}
 	return (EXIT_SUCCESS);
 }

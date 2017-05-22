@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void	print_result(t_stack *a, t_stack *b, int inst_nb)
+void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb)
 {
-	if (inst_nb > 0)
+	if (inst_nb > 0 && o->silence == false)
 	{
 		stack_print(a, b);
 		ft_putchar('\n');

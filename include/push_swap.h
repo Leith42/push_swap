@@ -38,6 +38,7 @@ typedef struct	s_options
 {
 	bool		screen_refresh;
 	bool		display_commands;
+	bool		silence;
 }				t_options;
 
 typedef struct	s_inst_func
@@ -90,6 +91,6 @@ void	handle_error(t_stack *a, t_stack *b);
 void	free_stack(t_stack *a, t_stack *b);
 void	clear_list(void *data, size_t n);
 void	stack_print(t_stack *a, t_stack *b);
-void	print_result(t_stack *a, t_stack *b, int inst_nb);
+void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb);
 
 #endif
