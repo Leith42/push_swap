@@ -54,8 +54,8 @@ int		stack_push(t_stack **s_top, int data);
 void	stack_pop(t_stack **s_top);
 void	swap(t_stack *s1, t_stack *s2);
 int		push(t_stack **dest, t_stack **src);
-int		rotate(t_stack **a, t_stack **b);
-int		revrot(t_stack **a, t_stack **b);
+int		rotate(t_stack **s1, t_stack **s2);
+int		revrot(t_stack **s1, t_stack **s2);
 int		push_all_in_a(t_stack **a, t_stack **b, t_list **inst);
 
 /*
@@ -72,7 +72,7 @@ int		descending_check(t_stack *stack);
 
 int		instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb);
 int		args_parse(const char *argv[], int argc, t_stack **a, t_options **opt);
-int		arg_validity_checker(const char *arg, t_options *opt);
+int		arg_validity_checker(const char *arg, t_options **opt);
 int		duplicate_checker(const char *argv[]);
 int		exec_instructions(char *command, t_stack **a, t_stack **b);
 int		stack_init(int argc, char const *argv[], t_stack **a);
@@ -90,6 +90,6 @@ void	handle_error(t_stack *a, t_stack *b);
 void	free_stack(t_stack *a, t_stack *b);
 void	clear_list(void *data, size_t n);
 void	stack_print(t_stack *a, t_stack *b);
-void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb);
+void	print_result(t_stack *a, t_stack *b, int inst_nb);
 
 #endif

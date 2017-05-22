@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb)
+void	print_result(t_stack *a, t_stack *b, int inst_nb)
 {
 	if (inst_nb > 0)
+	{
 		stack_print(a, b);
-	ft_printf("\nStack status :\t");
+		ft_putchar('\n');
+	}
 	ft_putendl(b == NULL && ascending_check(a) ? "OK" : "KO");
-	if (o->display_commands == 1)
-		ft_printf("Instructions executed :\t%d\n", inst_nb);
 }
 
 void	stack_print(t_stack *a, t_stack *b)
@@ -39,7 +39,7 @@ void	stack_print(t_stack *a, t_stack *b)
 		if (b)
 		{
 
-			ft_printf("%d", b->data);
+			ft_printf(" %d", b->data);
 			b = b->next;
 		}
 		ft_putchar('\n');

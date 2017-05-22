@@ -29,7 +29,7 @@ int	main(int argc, char const *argv[])
 		{
 			handle_error(a, b);
 		}
-		print_result(a, b, o, inst_nb);
+		print_result(a, b, inst_nb);
 		free_stack(a, b);
 		free(o);
 	}

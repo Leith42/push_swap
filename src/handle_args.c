@@ -19,14 +19,14 @@ int	browse_arguments(const char **argv, t_options **opt)
 	i = 1;
 	while (argv[i])
 	{
-		if (arg_validity_checker(argv[i], *opt) == false)
+		if (arg_validity_checker(argv[i], opt) == false)
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-int	arg_validity_checker(const char *arg, t_options *opt)
+int	arg_validity_checker(const char *arg, t_options **opt)
 {
 	unsigned int i;
 
@@ -41,9 +41,9 @@ int	arg_validity_checker(const char *arg, t_options *opt)
 		}
 	}
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'v' && arg[i + 2] == '\0')
-		opt->screen_refresh = 1;
+		(*opt)->screen_refresh = true;
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'i' && arg[i + 2] == '\0')
-		opt->display_commands = 1;
+		(*opt)->display_commands = true;
 	else
 		return (false);
 	return (true);
@@ -66,15 +66,18 @@ int	length_checker(const char *argv[])
 
 int	duplicate_checker(const char *argv[])
 {
-	unsigned int i;
+	int i;
+	int c;
 
 	i = 1;
 	while (argv[i])
 	{
-		if (argv[i] && argv[i + 1])
+		c = i + 1;
+		while (argv[c])
 		{
-			if (ft_strcmp(argv[i], argv[i + 1]) == 0)
+			if (ft_strcmp(argv[i], argv[c]) == 0)
 				return (false);
+			c++;
 		}
 		i++;
 	}
