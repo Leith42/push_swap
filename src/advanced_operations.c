@@ -41,55 +41,55 @@ int	push(t_stack **dest, t_stack **src)
 	return (true);
 }
 
-int	rotate(t_stack **a, t_stack **b)
+int	rotate(t_stack **s1, t_stack **s2)
 {
 	t_stack *queueNode;
 
-	if (a)
+	if (s1 && *s1 && (*s1)->next)
 	{
-		queueNode = *a;
+		queueNode = *s1;
 		while (queueNode->next)
 			queueNode = queueNode->next;
 		if ((queueNode->next = ft_memalloc(sizeof(t_stack))) == NULL)
 			return (false);
-		queueNode->next->data = (*a)->data;
+		queueNode->next->data = (*s1)->data;
 		queueNode->next->next = NULL;
-		stack_pop(a);
+		stack_pop(s1);
 	}
-	if (b)
+	if (s2 && *s2 && (*s2)->next)
 	{
-		queueNode = *b;
+		queueNode = *s2;
 		while (queueNode->next)
 			queueNode = queueNode->next;
 		if ((queueNode->next = ft_memalloc(sizeof(t_stack))) == NULL)
 			return (false);
-		queueNode->next->data = (*b)->data;
+		queueNode->next->data = (*s2)->data;
 		queueNode->next->next = NULL;
-		stack_pop(b);
+		stack_pop(s2);
 	}
 	return (true);
 }
 
-int	revrot(t_stack **a, t_stack **b)
+int	revrot(t_stack **s1, t_stack **s2)
 {
 	t_stack *queueNode;
 
-	if (a && *a && (*a)->next)
+	if (s1 && *s1 && (*s1)->next)
 	{
-		queueNode = *a;
+		queueNode = *s1;
 		while (queueNode->next->next)
 			queueNode = queueNode->next;
-		if (stack_push(a, queueNode->next->data) == false)
+		if (stack_push(s1, queueNode->next->data) == false)
 			return (false);
 		free(queueNode->next);
 		queueNode->next = NULL;
 	}
-	if (b && *b && (*b)->next)
+	if (s2 && *s2 && (*s2)->next)
 	{
-		queueNode = *b;
+		queueNode = *s2;
 		while (queueNode->next->next)
 			queueNode = queueNode->next;
-		if (stack_push(b, queueNode->next->data) == false)
+		if (stack_push(s2, queueNode->next->data) == false)
 			return (false);
 		free(queueNode->next);
 		queueNode->next = NULL;

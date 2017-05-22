@@ -1,6 +1,7 @@
 TARGET_PS = push_swap
 TARGET_C = checker
-CC = @gcc
+MAKEFLAGS += --silent
+CC = gcc
 LIBFT_PATH = ./libft/
 LIBFT_BIN = $(LIBFT_PATH)libft.a
 INCLUDE = ./include/
@@ -41,23 +42,23 @@ CHECKER = $(addprefix $(CHECKER_PATH), $(CHECKER_OBJ))
 all: $(TARGET_PS) $(TARGET_C)
 
 $(TARGET_PS): $(SRC) $(PUSH_SWAP)
-	@make -C $(LIBFT_PATH)
-	@$(CC) $(CFLAGS) $(PUSH_SWAP) $(SRC) -o $@ $(LIBFT_BIN)
-	@echo "\033[1;34mpush_swap\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(PUSH_SWAP) $(SRC) -o $@ $(LIBFT_BIN)
+	echo "\033[1;34mpush_swap\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 
 $(TARGET_C): $(CHECKER)
-	@$(CC) $(CFLAGS) $(CHECKER) $(SRC) -o $@ $(LIBFT_BIN)
-	@echo "\033[1;34mchecker\t\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
+	$(CC) $(CFLAGS) $(CHECKER) $(SRC) -o $@ $(LIBFT_BIN)
+	echo "\033[1;34mchecker\t\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 
 clean:
-	@make -C $(LIBFT_PATH) clean
-	@$(RM) $(SRC) $(PUSH_SWAP) $(CHECKER)
-	@echo "\033[1;34mpush_swap\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
+	make -C $(LIBFT_PATH) clean
+	$(RM) $(SRC) $(PUSH_SWAP) $(CHECKER)
+	echo "\033[1;34mpush_swap\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
 
 fclean: clean
-	@make -C $(LIBFT_PATH) fclean
-	@$(RM) $(TARGET_C) $(TARGET_PS)
-	@echo "\033[1;34mpush_swap\t\033[1;33mCleaning exe\t\033[0;32m[OK]\033[0m"
+	make -C $(LIBFT_PATH) fclean
+	$(RM) $(TARGET_C) $(TARGET_PS)
+	echo "\033[1;34mpush_swap\t\033[1;33mCleaning exe\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
 
