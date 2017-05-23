@@ -51,7 +51,6 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 		}
 	}
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'v' && arg[i + 2] == '\0')
-<<<<<<< HEAD
 		(*opt)->screen_refresh = (*opt)->silence == true ? false : true;
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'i' && arg[i + 2] == '\0')
 		(*opt)->display_commands = (*opt)->silence == true ? false : true;
@@ -61,11 +60,9 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 		(*opt)->screen_refresh = false;
 		(*opt)->display_commands = false;
 	}
-=======
 		(*opt)->screen_refresh = true;
 	else if (opt && arg[i] == '-' && arg[i + 1] == 'i' && arg[i + 2] == '\0')
 		(*opt)->display_commands = true;
->>>>>>> master
 	else
 		return (false);
 	return (true);
