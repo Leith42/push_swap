@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_stack.c                                      :+:      :+:    :+:   */
+/*   basic_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 15:36:49 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/02 15:22:53 by aazri            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:56:37 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_push(t_stack **s_top, int data)
+int		stack_push(t_stack **s_top, int data)
 {
-	t_stack *newNode;
+	t_stack *newnode;
 
-	if ((newNode = ft_memalloc(sizeof(t_stack))) == NULL)
+	if ((newnode = ft_memalloc(sizeof(t_stack))) == NULL)
 		return (false);
-	newNode->data = data;
+	newnode->data = data;
 	if (*s_top == NULL)
 	{
-		newNode->next = NULL;
+		newnode->next = NULL;
 	}
 	else
 	{
-		newNode->next = *s_top;
+		newnode->next = *s_top;
 	}
-	*s_top = newNode;
+	*s_top = newnode;
 	return (true);
 }
 
@@ -45,8 +45,8 @@ void	stack_pop(t_stack **s_top)
 
 int		ascending_check(t_stack *stack)
 {
-	int data;
-	t_stack *tmp;
+	int		data;
+	t_stack	*tmp;
 
 	tmp = stack;
 	while (tmp)
@@ -63,8 +63,8 @@ int		ascending_check(t_stack *stack)
 
 int		descending_check(t_stack *stack)
 {
-	int data;
-	t_stack *tmp;
+	int		data;
+	t_stack	*tmp;
 
 	tmp = stack;
 	while (tmp)

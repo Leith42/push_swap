@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:43:38 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/03 14:02:44 by aazri            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:54:56 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	browse_arguments(const char **argv, t_options **opt)
 {
-	int i;
-	bool digit;
+	int		i;
+	bool	digit;
 
 	i = 1;
 	digit = false;
@@ -41,8 +41,8 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 	unsigned int i;
 
 	i = 0;
-	if ((arg[i] == '-' && ft_isdigit(arg[i + 1]) == true) ||
-	(ft_isdigit(arg[i]) == true))
+	if ((arg[i] == '-' && ft_isdigit(arg[i + 1]) == true)
+	|| (ft_isdigit(arg[i]) == true))
 	{
 		while (arg[++i])
 		{
@@ -67,8 +67,8 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 
 int	length_checker(const char *argv[])
 {
-	unsigned int i;
-	intmax_t current;
+	unsigned int	i;
+	intmax_t		current;
 
 	i = 1;
 	while (argv[i])

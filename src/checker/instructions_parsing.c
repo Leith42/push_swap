@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions_parse.c                               :+:      :+:    :+:   */
+/*   instructions_parsing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:28:38 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/02 13:21:33 by aazri            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:52:10 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 {
-	int gnl;
-	char *command;
+	int		gnl;
+	char	*command;
 
 	*inst_nb = 0;
 	if (opt->silence == false)

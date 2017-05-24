@@ -35,3 +35,6 @@ test/
 build/
 CMakeLists.txt
 cmake-build-debug/
+
+auteur
+*.DS_Store

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_instructions.c                                :+:      :+:    :+:   */
+/*   advanced_operations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 18:09:52 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/02 12:20:26 by aazri            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:53:33 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	swap(t_stack *s1, t_stack *s2)
 	}
 }
 
-int	push(t_stack **dest, t_stack **src)
+int		push(t_stack **dest, t_stack **src)
 {
 	if (src && *src)
 	{
@@ -41,63 +41,63 @@ int	push(t_stack **dest, t_stack **src)
 	return (true);
 }
 
-int	rotate(t_stack **s1, t_stack **s2)
+int		rotate(t_stack **s1, t_stack **s2)
 {
-	t_stack *queueNode;
+	t_stack *queuenode;
 
 	if (s1 && *s1 && (*s1)->next)
 	{
-		queueNode = *s1;
-		while (queueNode->next)
-			queueNode = queueNode->next;
-		if ((queueNode->next = ft_memalloc(sizeof(t_stack))) == NULL)
+		queuenode = *s1;
+		while (queuenode->next)
+			queuenode = queuenode->next;
+		if ((queuenode->next = ft_memalloc(sizeof(t_stack))) == NULL)
 			return (false);
-		queueNode->next->data = (*s1)->data;
-		queueNode->next->next = NULL;
+		queuenode->next->data = (*s1)->data;
+		queuenode->next->next = NULL;
 		stack_pop(s1);
 	}
 	if (s2 && *s2 && (*s2)->next)
 	{
-		queueNode = *s2;
-		while (queueNode->next)
-			queueNode = queueNode->next;
-		if ((queueNode->next = ft_memalloc(sizeof(t_stack))) == NULL)
+		queuenode = *s2;
+		while (queuenode->next)
+			queuenode = queuenode->next;
+		if ((queuenode->next = ft_memalloc(sizeof(t_stack))) == NULL)
 			return (false);
-		queueNode->next->data = (*s2)->data;
-		queueNode->next->next = NULL;
+		queuenode->next->data = (*s2)->data;
+		queuenode->next->next = NULL;
 		stack_pop(s2);
 	}
 	return (true);
 }
 
-int	revrot(t_stack **s1, t_stack **s2)
+int		revrot(t_stack **s1, t_stack **s2)
 {
-	t_stack *queueNode;
+	t_stack *queuenode;
 
 	if (s1 && *s1 && (*s1)->next)
 	{
-		queueNode = *s1;
-		while (queueNode->next->next)
-			queueNode = queueNode->next;
-		if (stack_push(s1, queueNode->next->data) == false)
+		queuenode = *s1;
+		while (queuenode->next->next)
+			queuenode = queuenode->next;
+		if (stack_push(s1, queuenode->next->data) == false)
 			return (false);
-		free(queueNode->next);
-		queueNode->next = NULL;
+		free(queuenode->next);
+		queuenode->next = NULL;
 	}
 	if (s2 && *s2 && (*s2)->next)
 	{
-		queueNode = *s2;
-		while (queueNode->next->next)
-			queueNode = queueNode->next;
-		if (stack_push(s2, queueNode->next->data) == false)
+		queuenode = *s2;
+		while (queuenode->next->next)
+			queuenode = queuenode->next;
+		if (stack_push(s2, queuenode->next->data) == false)
 			return (false);
-		free(queueNode->next);
-		queueNode->next = NULL;
+		free(queuenode->next);
+		queuenode->next = NULL;
 	}
 	return (true);
 }
 
-int	exec_instructions(char *command, t_stack **a, t_stack **b)
+int		exec_instructions(char *command, t_stack **a, t_stack **b)
 {
 	if (ft_strcmp(command, SWAP_A) == 0)
 		swap(*a, NULL);

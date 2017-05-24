@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/24 16:32:31 by aazri             #+#    #+#             */
+/*   Updated: 2017/05/24 16:38:02 by aazri            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int do_we_swap(t_stack **a, t_stack **b, t_list **inst)
+int		do_we_swap(t_stack **a, t_stack **b, t_list **inst)
 {
 	if (*a && (*a)->next)
 	{
@@ -31,7 +43,7 @@ int		which_rotate(t_stack *s, int min)
 	return (len / 2 < find ? 0 : 1);
 }
 
-int rot_min_to_head(t_stack **a, t_stack **b, t_list **inst)
+int		rot_min_to_head(t_stack **a, t_stack **b, t_list **inst)
 {
 	int min;
 	int rot;
@@ -56,7 +68,7 @@ int rot_min_to_head(t_stack **a, t_stack **b, t_list **inst)
 	return (true);
 }
 
-int check_lists_status(t_stack **a, t_stack **b)
+int		check_lists_status(t_stack **a, t_stack **b)
 {
 	if (ascending_check(*a) == true)
 	{
@@ -68,7 +80,7 @@ int check_lists_status(t_stack **a, t_stack **b)
 	return (false);
 }
 
-int push_swap(t_stack **a, t_stack **b, t_list **inst)
+int		push_swap(t_stack **a, t_stack **b, t_list **inst)
 {
 	int status;
 

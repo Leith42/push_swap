@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 13:33:06 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/02 18:01:27 by aazri            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:51:51 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char const *argv[])
 {
-	int		inst_nb;
-	t_stack	*a;
-	t_stack	*b;
-	t_options *o;
+	int			inst_nb;
+	t_stack		*a;
+	t_stack		*b;
+	t_options	*o;
 
 	a = NULL;
 	b = NULL;
@@ -26,9 +26,7 @@ int	main(int argc, char const *argv[])
 	{
 		if ((args_parse(argv, argc, &a, &o) == false)
 		|| (instructions_parsing(&a, &b, o, &inst_nb) == ERROR))
-		{
 			handle_error(a, b);
-		}
 		print_result(a, b, o, inst_nb);
 		free_stack(a, b);
 		free(o);
