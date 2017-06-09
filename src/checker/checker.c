@@ -6,13 +6,21 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 13:33:06 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:51:51 by aazri            ###   ########.fr       */
+/*   Updated: 2017/06/09 16:49:13 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char const *argv[])
+void	display_usage(void)
+{
+	ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] [-s]");
+	ft_putendl("[-i]: displays the number of instructions executed.");
+	ft_putendl("[-v]: displays the current state of the stacks.");
+	ft_putendl("[-s]: only displays the KO or OK status of the stack.");
+}
+
+int		main(int argc, char const *argv[])
 {
 	int			inst_nb;
 	t_stack		*a;
@@ -22,6 +30,7 @@ int	main(int argc, char const *argv[])
 	a = NULL;
 	b = NULL;
 	o = NULL;
+	inst_nb = 0;
 	if (argc > 1)
 	{
 		if ((args_parse(argv, argc, &a, &o) == false)
@@ -33,10 +42,7 @@ int	main(int argc, char const *argv[])
 	}
 	else
 	{
-		ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] [-s]");
-		ft_putendl("[-i]: displays the number of instructions executed.");
-		ft_putendl("[-v]: displays the current state of the stacks.");
-		ft_putendl("[-s]: only displays the KO or OK status of the stack.");
+		display_usage();
 	}
 	return (EXIT_SUCCESS);
 }
