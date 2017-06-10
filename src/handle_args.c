@@ -68,12 +68,11 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 int	length_checker(const char *argv[])
 {
 	unsigned int	i;
-	intmax_t		current;
 
 	i = 1;
 	while (argv[i])
 	{
-		if ((current = ft_atol(argv[i], BASE_DECIMAL)) > INT_MAX)
+		if ((ft_atol(argv[i], BASE_DECIMAL)) > INT_MAX)
 			return (false);
 		i++;
 	}

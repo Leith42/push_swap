@@ -14,10 +14,10 @@
 
 void	display_usage(void)
 {
-	ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] [-s]");
-	ft_putendl("[-i]: displays the number of instructions executed.");
-	ft_putendl("[-v]: displays the current state of the stacks.");
-	ft_putendl("[-s]: only displays the KO or OK status of the stack.");
+	ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] or [-s]");
+	ft_putendl("[-i]: prints the number of instructions executed.");
+	ft_putendl("[-v]: updates the display of the stacks.");
+	ft_putendl("[-s]: prints only executed commands and the final status of the stack.");
 }
 
 int		main(int argc, char const *argv[])

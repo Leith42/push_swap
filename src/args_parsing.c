@@ -14,7 +14,7 @@
 
 int	args_parse(const char **argv, int argc, t_stack **s, t_options **opt)
 {
-	if (opt)
+	if (opt != NULL)
 	{
 		if ((*opt = ft_memalloc(sizeof(t_options))) == NULL)
 			return (false);
