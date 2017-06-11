@@ -20,6 +20,10 @@ int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 	*inst_nb = 0;
 	if (opt->silence == false)
 	{
+		if (opt->screen_refresh == true)
+		{
+			ft_putstr("\033c");
+		}
 		stack_print(*a, *b);
 		ft_printf("Enter instructions :\n");
 	}
