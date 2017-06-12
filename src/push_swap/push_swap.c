@@ -14,14 +14,10 @@
 
 void	print_instructions(t_list *i)
 {
-	t_list *tmp;
-
-	while (i)
+	while (i != NULL)
 	{
 		ft_printf("%s\n", i->content);
-		tmp = i;
 		i = i->next;
-		free(tmp);
 	}
 }
 
@@ -56,11 +52,11 @@ int		main(int argc, char const *argv[])
 		if (args_parse(argv, argc, &a, NULL) == false
 		|| push_swap(&a, &b, &instructions) == false)
 		{
-			ft_lstdel(&instructions, &clear_list);
-			handle_error(a, b);
+			handle_error(a, b, instructions);
 		}
-		print_instructions(instructions);
 		free_stack(a, b);
+		print_instructions(instructions);
+		ft_lstdel(&instructions, &clear_list);
 	}
 	else
 		ft_putendl("Usage: ./push_swap 1 2 3 4...");

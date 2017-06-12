@@ -21,9 +21,7 @@ int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 	if (opt->silence == false)
 	{
 		if (opt->screen_refresh == true)
-		{
-			ft_putstr("\033c");
-		}
+			ft_cls();
 		stack_print(*a, *b);
 		ft_printf("Enter instructions :\n");
 	}
@@ -34,7 +32,7 @@ int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 		(*inst_nb)++;
 		if (opt->screen_refresh == true)
 		{
-			ft_putstr("\033c");
+			ft_cls();
 			stack_print(*a, *b);
 		}
 		if (opt->display_commands == true)

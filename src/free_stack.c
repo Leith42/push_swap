@@ -16,13 +16,13 @@ void	free_stack(t_stack *a, t_stack *b)
 {
 	t_stack	*tmp_s;
 
-	while (a)
+	while (a != NULL)
 	{
 		tmp_s = a->next;
 		free(a);
 		a = tmp_s;
 	}
-	while (b)
+	while (b != NULL)
 	{
 		tmp_s = b->next;
 		free(b);
@@ -32,7 +32,9 @@ void	free_stack(t_stack *a, t_stack *b)
 
 void	clear_list(void *data, size_t n)
 {
-	if (data)
+	if (data != NULL)
+	{
 		free(data);
+	}
 	(void)n;
 }

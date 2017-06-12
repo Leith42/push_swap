@@ -69,7 +69,7 @@ int		get_min(t_stack *s);
 **	UTILS
 */
 
-void	handle_error(t_stack *a, t_stack *b);
+void	handle_error(t_stack *a, t_stack *b, t_list *instructions);
 void	free_stack(t_stack *a, t_stack *b);
 void	clear_list(void *data, size_t n);
 void	stack_print(t_stack *a, t_stack *b);

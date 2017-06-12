@@ -35,7 +35,9 @@ int		main(int argc, char const *argv[])
 	{
 		if ((args_parse(argv, argc, &a, &o) == false)
 		|| (instructions_parsing(&a, &b, o, &inst_nb) == ERROR))
-			handle_error(a, b);
+		{
+			handle_error(a, b, NULL);
+		}
 		print_result(a, b, o, inst_nb);
 		free_stack(a, b);
 		free(o);
