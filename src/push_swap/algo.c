@@ -80,7 +80,8 @@ int		check_lists_status(t_stack **a, t_stack **b)
 {
 	if (ascending_check(*a) == true)
 	{
-		if ((*b == NULL) || (*b && (*b)->next == NULL) || (descending_check(*b) == true))
+		if ((*b == NULL) || (*b && (*b)->next == NULL)
+			|| (descending_check(*b) == true))
 		{
 			return (true);
 		}

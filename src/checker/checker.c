@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 13:33:06 by aazri             #+#    #+#             */
-/*   Updated: 2017/06/09 16:49:13 by aazri            ###   ########.fr       */
+/*   Updated: 2017/06/19 16:45:58 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	display_usage(void)
 	ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] or [-s]");
 	ft_putendl("[-i]: prints the number of instructions executed.");
 	ft_putendl("[-v]: updates the display of the stacks.");
-	ft_putendl("[-s]: prints only executed commands and the final status of the stack.");
+	ft_putstr("[-s]: prints only executed commands and ");
+	ft_putendl("the final status of the stack.");
 }
 
 int		main(int argc, char const *argv[])

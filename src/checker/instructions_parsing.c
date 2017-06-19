@@ -12,19 +12,11 @@
 
 #include "push_swap.h"
 
-int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
+int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 {
 	int		gnl;
 	char	*command;
 
-	*inst_nb = 0;
-	if (opt->silence == false)
-	{
-		if (opt->screen_refresh == true)
-			ft_cls();
-		stack_print(*a, *b);
-		ft_printf("Enter instructions :\n");
-	}
 	while ((gnl = get_next_line(0, &command)))
 	{
 		if (exec_instructions(command, a, b) == false)
@@ -40,4 +32,17 @@ int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 		free(command);
 	}
 	return (gnl);
+}
+
+int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
+{
+	*inst_nb = 0;
+	if (opt->silence == false)
+	{
+		if (opt->screen_refresh == true)
+			ft_cls();
+		stack_print(*a, *b);
+		ft_printf("Enter instructions :\n");
+	}
+	return (gnl_loop(a, b, opt, inst_nb));
 }
