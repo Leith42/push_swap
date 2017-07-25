@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stack.c                                       :+:      :+:    :+:   */
+/*   freedom.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *a, t_stack *b)
+void freedom(t_stack *a, t_stack *b, t_list *i, t_options *o)
 {
 	t_stack	*tmp_s;
 
@@ -27,6 +27,14 @@ void	free_stack(t_stack *a, t_stack *b)
 		tmp_s = b->next;
 		free(b);
 		b = tmp_s;
+	}
+	if (i != NULL)
+	{
+		ft_lstdel(&i, &clear_list);
+	}
+	if (o != NULL)
+	{
+		free(o);
 	}
 }
 

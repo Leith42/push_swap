@@ -12,22 +12,6 @@
 
 #include "push_swap.h"
 
-int		do_we_swap(t_stack **a, t_stack **b, t_list **inst)
-{
-	if (*a && (*a)->next)
-	{
-		if ((*a)->data > (*a)->next->data)
-		{
-			if (exec_instructions(SWAP_A, a, b) == false)
-			{
-				return (false);
-			}
-			stock_instruction(inst, SWAP_A);
-		}
-	}
-	return (true);
-}
-
 int		which_rotate(t_stack *s, int min)
 {
 	int len;
@@ -47,35 +31,6 @@ int		which_rotate(t_stack *s, int min)
 	return (len / 2 < find ? 0 : 1);
 }
 
-int		rot_min_to_head(t_stack **a, t_stack **b, t_list **inst)
-{
-	int min;
-	int rot;
-
-	min = get_min(*a);
-	rot = which_rotate(*a, min);
-	while (min != (*a)->data)
-	{
-		if (rot == 1)
-		{
-			if (exec_instructions(ROT_A, a, b) == false)
-			{
-				return (false);
-			}
-			stock_instruction(inst, ROT_A);
-		}
-		else
-		{
-			if (exec_instructions(REVROT_A, a, b) == false)
-			{
-				return (false);
-			}
-			stock_instruction(inst, REVROT_A);
-		}
-	}
-	return (true);
-}
-
 int		check_lists_status(t_stack **a, t_stack **b)
 {
 	if (ascending_check(*a) == true)
@@ -89,18 +44,53 @@ int		check_lists_status(t_stack **a, t_stack **b)
 	return (false);
 }
 
-int		push_swap(t_stack **a, t_stack **b, t_list **inst)
+int	get_min(t_stack *s)
 {
-	if (ascending_check(*a) == true)
+	int min;
+
+	min = s->data;
+	s = s->next;
+	while (s)
 	{
-		return (true);
+		if (s->data < min)
+			min = s->data;
+		s = s->next;
 	}
+	return (min);
+}
+
+int		rot_min_to_head(t_stack **a, t_stack **b, t_list **inst)
+{
+	int min;
+	int rot;
+
+	min = get_min(*a);
+	rot = which_rotate(*a, min);
+	while (min != (*a)->data)
+	{
+		if (rot == 1)
+		{
+			if (exec_instruction(ROT_A, a, b, inst) == false)
+			{
+				return (false);
+			}
+		}
+		else
+		{
+			if (exec_instruction(REVROT_A, a, b, inst) == false)
+			{
+				return (false);
+			}
+		}
+	}
+	return (true);
+}
+
+int		ps_ssort(t_stack **a, t_stack **b, t_list **inst)
+{
+	do_we_swap(a, NULL, inst);
 	while (*a != NULL)
 	{
-		if (do_we_swap(a, b, inst) == false)
-		{
-			return (false);
-		}
 		if (rot_min_to_head(a, b, inst) == false)
 		{
 			return (false);
@@ -109,11 +99,10 @@ int		push_swap(t_stack **a, t_stack **b, t_list **inst)
 		{
 			return (push_all_in_a(a, b, inst));
 		}
-		if (exec_instructions(PUSH_B, a, b) == false)
+		if (exec_instruction(PUSH_B, a, b, inst) == false)
 		{
 			return (false);
 		}
-		stock_instruction(inst, PUSH_B);
 	}
 	return (push_all_in_a(a, b, inst));
 }

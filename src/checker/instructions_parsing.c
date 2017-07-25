@@ -19,8 +19,10 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 
 	while ((gnl = get_next_line(0, &command)))
 	{
-		if (exec_instructions(command, a, b) == false)
+		if (exec_instruction(command, a, b) == false)
+		{
 			return (ERROR);
+		}
 		(*inst_nb)++;
 		if (opt->screen_refresh == true)
 		{
@@ -28,7 +30,9 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 			stack_print(*a, *b);
 		}
 		if (opt->display_commands == true)
+		{
 			ft_printf("Instructions executed :\t{GREEN}%d{EOC}\n\n", *inst_nb);
+		}
 		free(command);
 	}
 	return (gnl);
@@ -37,12 +41,11 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 {
 	*inst_nb = 0;
-	if (opt->silence == false)
+	if (opt->screen_refresh == true)
 	{
-		if (opt->screen_refresh == true)
-			ft_cls();
+		ft_cls();
 		stack_print(*a, *b);
-		ft_printf("Enter instructions :\n");
 	}
+	ft_printf("Enter instructions :\n");
 	return (gnl_loop(a, b, opt, inst_nb));
 }

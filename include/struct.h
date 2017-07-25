@@ -21,11 +21,22 @@ typedef struct	s_stack
 	struct s_stack	*next;
 }				t_stack;
 
+typedef struct	s_qsort
+{
+	int rot;
+	int push;
+	int len;
+	int tmp_len;
+	int	big_len;
+	int pivot;
+}				t_qsort;
+
 typedef struct	s_options
 {
 	bool	screen_refresh;
 	bool	display_commands;
-	bool	silence;
+	bool	selection_sort;
+	bool	quick_sort;
 }				t_options;
 
 typedef struct	s_inst_func

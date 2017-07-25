@@ -16,16 +16,17 @@ GENERAL_SRC = \
 		advanced_operations.c \
 		basic_operations.c \
 		args_parsing.c \
-		free_stack.c \
+		freedom.c \
 		printer.c \
 		handle_args.c \
 		handle_error.c \
 
 PUSH_SWAP_SRC = \
 		algo.c \
-		push_swap.c \
+		algo2.c \
 		get_min.c \
 		push_all_in_a.c \
+		push_swap.c \
 
 CHECKER_SRC = \
 		checker.c \

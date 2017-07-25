@@ -35,7 +35,7 @@ void	stack_pop(t_stack **s_top)
 {
 	t_stack *tmp;
 
-	if (*s_top)
+	if (*s_top != NULL)
 	{
 		tmp = *s_top;
 		*s_top = tmp->next;
@@ -49,7 +49,7 @@ int		ascending_check(t_stack *stack)
 	t_stack	*tmp;
 
 	tmp = stack;
-	while (tmp)
+	while (tmp != NULL)
 	{
 		data = tmp->data;
 		if ((tmp = tmp->next) != NULL)
@@ -67,7 +67,7 @@ int		descending_check(t_stack *stack)
 	t_stack	*tmp;
 
 	tmp = stack;
-	while (tmp)
+	while (tmp != NULL)
 	{
 		data = tmp->data;
 		if ((tmp = tmp->next) != NULL)
@@ -77,4 +77,17 @@ int		descending_check(t_stack *stack)
 		}
 	}
 	return (true);
+}
+
+int 	stack_len(t_stack *s)
+{
+	int i;
+
+	i = 0;
+	while (s != NULL)
+	{
+		s = s->next;
+		i++;
+	}
+	return (i);
 }

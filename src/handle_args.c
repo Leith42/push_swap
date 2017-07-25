@@ -12,21 +12,23 @@
 
 #include "push_swap.h"
 
-int	browse_arguments(const char **argv, t_options **opt)
+int	browse_arguments(char **array, t_options **opt)
 {
 	int		i;
 	bool	digit;
 
-	i = 1;
+	i = 0;
 	digit = false;
-	while (argv[i])
+	while (array[i])
 	{
-		if (arg_validity_checker(argv[i], opt) == false)
+		if (arg_validity_checker(array[i], opt) == false)
+		{
 			return (false);
+		}
 		if (digit == false)
 		{
-			if ((argv[i][0] == '-' && ft_isdigit(argv[i][1]) == true)
-				|| (ft_isdigit(argv[i][0]) == true))
+			if ((array[i][0] == '-' && ft_isdigit(array[i][1]) == true)
+				|| (ft_isdigit(array[i][0]) == true))
 			{
 				digit = true;
 			}
@@ -36,9 +38,9 @@ int	browse_arguments(const char **argv, t_options **opt)
 	return (digit);
 }
 
-int	arg_validity_checker(const char *arg, t_options **opt)
+int	arg_validity_checker(char *arg, t_options **opt)
 {
-	unsigned int i;
+	int i;
 
 	i = 0;
 	if ((arg[i] == '-' && ft_isdigit(arg[i + 1]) == true)
@@ -50,48 +52,54 @@ int	arg_validity_checker(const char *arg, t_options **opt)
 				return (false);
 		}
 	}
-	else if (opt && arg[i] == '-' && arg[i + 1] == 'v' && arg[i + 2] == '\0')
-		(*opt)->screen_refresh = (*opt)->silence == true ? false : true;
-	else if (opt && arg[i] == '-' && arg[i + 1] == 'i' && arg[i + 2] == '\0')
-		(*opt)->display_commands = (*opt)->silence == true ? false : true;
-	else if (opt && arg[i] == '-' && arg[i + 1] == 's' && arg[i + 2] == '\0')
-	{
-		(*opt)->silence = true;
-		(*opt)->screen_refresh = false;
-		(*opt)->display_commands = false;
-	}
+	else if (opt && ft_strcmp(arg, "-v") == 0)
+		(*opt)->screen_refresh = true;
+	else if (opt && ft_strcmp(arg, "-i") == 0)
+		(*opt)->display_commands = true;
+	else if (opt && ft_strcmp(arg, "-ssort") == 0)
+		(*opt)->selection_sort = true;
+	else if (opt && ft_strcmp(arg, "-qsort") == 0)
+		(*opt)->quick_sort = true;
 	else
+		return (false);
+	if ((*opt)->quick_sort == true && (*opt)->selection_sort == true)
 		return (false);
 	return (true);
 }
 
-int	length_checker(const char *argv[])
+int	length_checker(char *argv[])
 {
-	unsigned int	i;
+	int	i;
+	intmax_t		arg;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
-		if ((ft_atol(argv[i], BASE_DECIMAL)) > INT_MAX)
+		arg = ft_atol(argv[i], BASE_DECIMAL);
+		if (arg > INT_MAX || arg < INT_MIN)
+		{
 			return (false);
+		}
 		i++;
 	}
 	return (true);
 }
 
-int	duplicate_checker(const char *argv[])
+int	duplicate_checker(char *argv[])
 {
 	int i;
 	int c;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		c = i + 1;
 		while (argv[c])
 		{
 			if (ft_strcmp(argv[i], argv[c]) == 0)
+			{
 				return (false);
+			}
 			c++;
 		}
 		i++;
@@ -99,17 +107,23 @@ int	duplicate_checker(const char *argv[])
 	return (true);
 }
 
-int	stack_init(int argc, char const *argv[], t_stack **s)
+int	stack_init(char *argv[], t_stack **s)
 {
 	int i;
 
-	i = argc;
-	while (--i)
+	i = 0;
+	while (argv[i])
+	{
+		i++;
+	}
+	while (i-- != 0)
 	{
 		if (ft_isdigit(argv[i][0]) || ft_isdigit(argv[i][1]))
 		{
-			if ((stack_push(s, ft_atol(argv[i], BASE_DECIMAL))) == false)
+			if ((stack_push(s, ft_atoi(argv[i])) == false))
+			{
 				return (false);
+			}
 		}
 	}
 	return (true);

@@ -12,13 +12,9 @@
 
 #include "push_swap.h"
 
-void	handle_error(t_stack *a, t_stack *b, t_list *instructions)
+void	handle_error(t_stack *a, t_stack *b, t_list *i, t_options *o)
 {
-	free_stack(a, b);
-	if (instructions != NULL)
-	{
-		ft_lstdel(&instructions, &clear_list);
-	}
+	freedom(a, b, i, o);
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }

@@ -35,7 +35,9 @@ int		push(t_stack **dest, t_stack **src)
 	if (src && *src)
 	{
 		if (stack_push(dest, (*src)->data) == false)
+		{
 			return (false);
+		}
 		stack_pop(src);
 	}
 	return (true);
@@ -97,8 +99,9 @@ int		revrot(t_stack **s1, t_stack **s2)
 	return (true);
 }
 
-int		exec_instructions(char *command, t_stack **a, t_stack **b)
+int exec_instruction(char *command, t_stack **a, t_stack **b, t_list **inst)
 {
+	stock_instruction(inst, command);
 	if (ft_strcmp(command, SWAP_A) == 0)
 		swap(*a, NULL);
 	else if (ft_strcmp(command, SWAP_B) == 0)

@@ -12,53 +12,63 @@
 
 #include "push_swap.h"
 
-void	print_instructions(t_list *i)
+void	display_usage(void)
 {
-	while (i != NULL)
-	{
-		ft_printf("%s\n", i->content);
-		i = i->next;
-	}
+	ft_putendl("usage: ./push_swap 1 2 3 4... [-qsort] or [-ssort]");
+	ft_putendl("[-qsort]: Forces the use of a quick sort algorithm.");
+	ft_putendl("[-ssort]: Forces the use of a selection sort algorithm.");
+	ft_putendl("By default the program will choose the "
+					   "most optimized algorithm according to the number of integers.");
 }
 
-void	stock_instruction(t_list **inst, char *str)
+int		push_swap(t_stack **a, t_stack **b, t_list **inst, t_options *options)
 {
-	t_list *tmp;
+	t_qsort data;
 
-	tmp = *inst;
-	if (*inst == NULL)
+	if (ascending_check(*a) == true)
 	{
-		*inst = ft_lstnew(str, ft_strlen(str) + 1);
+		return (true);
+	}
+	else if (options->selection_sort == true ||
+			 options->quick_sort == false && stack_len(*a) <= 13)
+	{
+		return (ps_ssort(a, b, inst));
 	}
 	else
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = ft_lstnew(str, ft_strlen(str) + 1);
+		data.len = stack_len(*a);
+		ps_qsort(a, b, inst, data);
 	}
+	return (true);
 }
 
-int		main(int argc, char const *argv[])
+int		main(int argc, char *argv[])
 {
 	t_stack *a;
 	t_stack *b;
 	t_list	*instructions;
+	t_options *options;
 
 	a = NULL;
 	b = NULL;
 	instructions = NULL;
+	options = NULL;
 	if (argc > 1)
 	{
-		if (args_parse(argv, argc, &a, NULL) == false
-		|| push_swap(&a, &b, &instructions) == false)
+		if (args_parse(argv, argc, &a, &options) == false ||
+			push_swap(&a, &b, &instructions, options) == false ||
+			op_reducer(instructions) == false)
 		{
-			handle_error(a, b, instructions);
+			handle_error(a, b, instructions, options);
 		}
-		free_stack(a, b);
-		print_instructions(instructions);
-		ft_lstdel(&instructions, &clear_list);
+		//print_instructions(instructions);
+		//stack_print(a, b);
+		printf("op len: %ld\n", ft_lstcount(instructions));
+		freedom(a, b, instructions, options);
 	}
 	else
-		ft_putendl("Usage: ./push_swap 1 2 3 4...");
+	{
+		display_usage();
+	}
 	return (EXIT_SUCCESS);
 }
