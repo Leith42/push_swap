@@ -33,8 +33,9 @@ typedef struct	s_qsort
 
 typedef struct	s_options
 {
-	bool	screen_refresh;
+	bool	stack_refresh;
 	bool	display_commands;
+	bool	clear_screen;
 	bool	selection_sort;
 	bool	quick_sort;
 }				t_options;

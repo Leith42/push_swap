@@ -1,14 +1,5 @@
 #include "push_swap.h"
 
-void	print_instructions(t_list *i)
-{
-	while (i != NULL)
-	{
-		ft_putendl(i->content);
-		i = i->next;
-	}
-}
-
 void	stock_instruction(t_list **inst, char *str)
 {
 	t_list *tmp;
@@ -27,6 +18,7 @@ void	stock_instruction(t_list **inst, char *str)
 		tmp->next = ft_lstnew(str, ft_strlen(str) + 1);
 	}
 }
+
 
 void	do_we_swap(t_stack **a, t_stack **b, t_list **inst)
 {

@@ -19,14 +19,17 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 
 	while ((gnl = get_next_line(0, &command)))
 	{
-		if (exec_instruction(command, a, b) == false)
+		if (exec_instruction(command, a, b, NULL) == false)
 		{
 			return (ERROR);
 		}
 		(*inst_nb)++;
-		if (opt->screen_refresh == true)
+		if (opt->clear_screen == true)
 		{
 			ft_cls();
+		}
+		if (opt->stack_refresh == true)
+		{
 			stack_print(*a, *b);
 		}
 		if (opt->display_commands == true)
@@ -41,9 +44,12 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 int	instructions_parsing(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 {
 	*inst_nb = 0;
-	if (opt->screen_refresh == true)
+	if (opt->clear_screen == true)
 	{
 		ft_cls();
+	}
+	if (opt->stack_refresh == true)
+	{
 		stack_print(*a, *b);
 	}
 	ft_printf("Enter instructions :\n");

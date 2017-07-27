@@ -53,9 +53,11 @@ int	arg_validity_checker(char *arg, t_options **opt)
 		}
 	}
 	else if (opt && ft_strcmp(arg, "-v") == 0)
-		(*opt)->screen_refresh = true;
+		(*opt)->stack_refresh = true;
 	else if (opt && ft_strcmp(arg, "-i") == 0)
 		(*opt)->display_commands = true;
+	else if (opt && ft_strcmp(arg, "-c") == 0)
+		(*opt)->clear_screen = true;
 	else if (opt && ft_strcmp(arg, "-ssort") == 0)
 		(*opt)->selection_sort = true;
 	else if (opt && ft_strcmp(arg, "-qsort") == 0)

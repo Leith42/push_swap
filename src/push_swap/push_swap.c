@@ -21,6 +21,15 @@ void	display_usage(void)
 					   "most optimized algorithm according to the number of integers.");
 }
 
+void	print_instructions(t_list *i)
+{
+	while (i != NULL)
+	{
+		ft_putendl(i->content);
+		i = i->next;
+	}
+}
+
 int		push_swap(t_stack **a, t_stack **b, t_list **inst, t_options *options)
 {
 	t_qsort data;
@@ -29,8 +38,8 @@ int		push_swap(t_stack **a, t_stack **b, t_list **inst, t_options *options)
 	{
 		return (true);
 	}
-	else if (options->selection_sort == true ||
-			 options->quick_sort == false && stack_len(*a) <= 13)
+	else if ((options->selection_sort == true) ||
+			(options->quick_sort == false && stack_len(*a) <= 13))
 	{
 		return (ps_ssort(a, b, inst));
 	}
@@ -38,8 +47,8 @@ int		push_swap(t_stack **a, t_stack **b, t_list **inst, t_options *options)
 	{
 		data.len = stack_len(*a);
 		ps_qsort(a, b, inst, data);
+		return (true);
 	}
-	return (true);
 }
 
 int		main(int argc, char *argv[])
@@ -61,9 +70,9 @@ int		main(int argc, char *argv[])
 		{
 			handle_error(a, b, instructions, options);
 		}
-		//print_instructions(instructions);
+		print_instructions(instructions);
 		//stack_print(a, b);
-		printf("op len: %ld\n", ft_lstcount(instructions));
+		//printf("op len: %ld\n", ft_lstcount(instructions));
 		freedom(a, b, instructions, options);
 	}
 	else

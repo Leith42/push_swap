@@ -20,11 +20,13 @@ GENERAL_SRC = \
 		printer.c \
 		handle_args.c \
 		handle_error.c \
+		utils.c \
 
 PUSH_SWAP_SRC = \
-		algo.c \
-		algo2.c \
-		get_min.c \
+		selection_sort.c \
+		quick_sort.c \
+		quick_sort_pivot.c \
+		op_reducer.c \
 		push_all_in_a.c \
 		push_swap.c \
 

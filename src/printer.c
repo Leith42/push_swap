@@ -16,9 +16,12 @@ void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb)
 {
 	if (inst_nb > 0)
 	{
-		if (o->screen_refresh == true)
+		if (o->clear_screen == true)
 		{
 			ft_cls();
+		}
+		if (o->stack_refresh == true)
+		{
 			stack_print(a, b);
 		}
 		if (o->display_commands == true)

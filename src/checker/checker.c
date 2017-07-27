@@ -14,9 +14,10 @@
 
 void	display_usage(void)
 {
-	ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v]");
+	ft_putendl("usage: ./checker 1 2 3 4... [-i] [-v] [-c]");
 	ft_putendl("[-i]: prints the number of instructions executed.");
 	ft_putendl("[-v]: updates the display of the stacks.");
+	ft_putendl("[-c]: clears the console after each operation.");
 }
 
 int		main(int argc, char *argv[])
@@ -35,11 +36,10 @@ int		main(int argc, char *argv[])
 		if ((args_parse(argv, argc, &a, &o) == false)
 		|| (instructions_parsing(&a, &b, o, &inst_nb) == ERROR))
 		{
-			handle_error(a, b, NULL);
+			handle_error(a, b, NULL, o);
 		}
 		print_result(a, b, o, inst_nb);
-		free_stack(a, b);
-		free(o);
+		freedom(a, b, NULL, o);
 	}
 	else
 	{

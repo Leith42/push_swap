@@ -101,7 +101,8 @@ int		revrot(t_stack **s1, t_stack **s2)
 
 int exec_instruction(char *command, t_stack **a, t_stack **b, t_list **inst)
 {
-	stock_instruction(inst, command);
+	if (inst != NULL)
+		stock_instruction(inst, command);
 	if (ft_strcmp(command, SWAP_A) == 0)
 		swap(*a, NULL);
 	else if (ft_strcmp(command, SWAP_B) == 0)
