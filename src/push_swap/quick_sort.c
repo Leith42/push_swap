@@ -71,6 +71,7 @@ void	ps_rev_qsort(t_stack **a, t_stack **b, t_list **inst, t_qsort qsort)
 		return (do_we_swap(NULL, b, inst));
 	}
 	qsort.pivot = get_pivot(*b, qsort.len);
+	printf("{GREEN}%d{EOC} ", qsort.pivot);
 	rev_push_and_rot(a, b, inst, &qsort);
 	qsort.len = qsort.push;
 	ps_qsort(a, b, inst, qsort);
@@ -130,6 +131,7 @@ void	ps_qsort(t_stack **a, t_stack **b, t_list **inst, t_qsort qsort)
 		return (do_we_swap(a, NULL, inst));
 	}
 	qsort.pivot = get_pivot(*a, qsort.len);
+	printf("{RED}%d{EOC} ", qsort.pivot);
 	push_and_rot(a, b, inst, &qsort);
 	qsort.big_len = stack_len(*a);
 	while (qsort.rot-- && qsort.big_len != qsort.len)

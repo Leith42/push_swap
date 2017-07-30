@@ -33,8 +33,8 @@ int		main(int argc, char *argv[])
 	inst_nb = 0;
 	if (argc > 1)
 	{
-		if ((args_parse(argv, argc, &a, &o) == false)
-		|| (instructions_parsing(&a, &b, o, &inst_nb) == ERROR))
+		if ((args_parse(argv, argc, &a, &o) == false) ||
+			(instructions_parsing(&a, &b, o, &inst_nb) == ERROR))
 		{
 			handle_error(a, b, NULL, o);
 		}

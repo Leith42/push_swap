@@ -21,6 +21,7 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 	{
 		if (exec_instruction(command, a, b, NULL) == false)
 		{
+			ft_strdel(&command);
 			return (ERROR);
 		}
 		(*inst_nb)++;
@@ -34,9 +35,9 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 		}
 		if (opt->display_commands == true)
 		{
-			ft_printf("Instructions executed :\t{GREEN}%d{EOC}\n\n", *inst_nb);
+			ft_printf("Instructions executed :\t{RED}%d{EOC}\n\n", *inst_nb);
 		}
-		free(command);
+		ft_strdel(&command);
 	}
 	return (gnl);
 }

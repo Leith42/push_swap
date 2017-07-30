@@ -70,7 +70,7 @@ int		main(int argc, char *argv[])
 		{
 			handle_error(a, b, instructions, options);
 		}
-		print_instructions(instructions);
+		//print_instructions(instructions);
 		//stack_print(a, b);
 		//printf("op len: %ld\n", ft_lstcount(instructions));
 		freedom(a, b, instructions, options);

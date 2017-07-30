@@ -42,11 +42,13 @@ int	arg_validity_checker(char *arg, t_options **opt)
 {
 	int i;
 
-	i = 0;
-	if ((arg[i] == '-' && ft_isdigit(arg[i + 1]) == true)
-	|| (ft_isdigit(arg[i]) == true))
+	i = arg[0] == '-' || arg[0] == '+' ? 1 : 0;
+	if (ft_isdigit(arg[i]) == true)
 	{
-		while (arg[++i])
+		if ((arg[i] == '0' && arg[i + 1] != '\0') ||
+			(arg[0] == '-' && arg[1] == '0'))
+				return (false);
+		while (arg[++i] != '\0')
 		{
 			if (ft_isdigit(arg[i]) == false)
 				return (false);
@@ -64,9 +66,7 @@ int	arg_validity_checker(char *arg, t_options **opt)
 		(*opt)->quick_sort = true;
 	else
 		return (false);
-	if ((*opt)->quick_sort == true && (*opt)->selection_sort == true)
-		return (false);
-	return (true);
+	return ((*opt)->quick_sort == true && (*opt)->selection_sort == true ? false : true);
 }
 
 int	length_checker(char *argv[])

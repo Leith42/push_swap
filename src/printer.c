@@ -34,9 +34,9 @@ void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb)
 
 void	stack_print(t_stack *a, t_stack *b)
 {
-	ft_putendl("-------------------------");
-	ft_putendl(" Stack A         Stack B ");
-	ft_putendl("---------   |   ---------");
+	ft_printf("{GREEN}-------------------------{EOC}\n");
+	ft_printf(" {RED}Stack A         Stack B{EOC} \n");
+	ft_printf("{GREEN}---------   |   ---------{EOC}\n");
 	while (a || b)
 	{
 		if (a)
@@ -55,5 +55,5 @@ void	stack_print(t_stack *a, t_stack *b)
 		}
 		ft_putchar('\n');
 	}
-	ft_printf("-------------------------\n");
+	ft_printf("{GREEN}-------------------------{EOC}\n");
 }

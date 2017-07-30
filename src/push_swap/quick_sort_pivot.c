@@ -44,7 +44,6 @@ static int	*get_array_from_list(t_stack *s, int len)
 	if ((array = malloc(sizeof(array) * len)) == NULL)
 	{
 		handle_error(s, NULL, NULL, NULL);
-
 	}
 	while (i < len)
 	{
