@@ -17,7 +17,7 @@ void	display_usage(void)
 	ft_putendl("usage: ./push_swap 1 2 3 4... [-qsort] or [-ssort]");
 	ft_putendl("[-qsort]: Forces the use of a quick sort algorithm.");
 	ft_putendl("[-ssort]: Forces the use of a selection sort algorithm.");
-	ft_putendl("By default the program will choose the most optimized algorithm"
+	ft_putendl("By default the program will choose the most optimized algorithm "
 				"according to the number of integers.");
 }
 
