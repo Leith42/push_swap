@@ -1,40 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/31 15:19:52 by aazri             #+#    #+#             */
+/*   Updated: 2017/07/31 15:25:11 by aazri            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int		how_many_sorts(t_stack *a, int pivot, int len)
-{
-	int i;
-
-	i = 0;
-	while (len)
-	{
-		if (a->data < pivot)
-		{
-			i++;
-		}
-		a = a ->next;
-		len--;
-	}
-	return (i);
-}
-
-int		rev_how_many_sort(t_stack *a, int pivot, int len)
-{
-	int i;
-
-	i = 0;
-	while (len)
-	{
-		if (a->data > pivot)
-		{
-			i++;
-		}
-		a = a->next;
-		len--;
-	}
-	return (i);
-}
-
-void	rev_push_and_rot(t_stack **a, t_stack **b, t_list **inst, t_qsort *qsort)
+void	rev_push_and_rot(t_stack **a, t_stack **b, t_list **ins, t_qsort *qsort)
 {
 	int sorts;
 
@@ -43,18 +21,18 @@ void	rev_push_and_rot(t_stack **a, t_stack **b, t_list **inst, t_qsort *qsort)
 	{
 		if ((*b)->data > qsort->pivot)
 		{
-			if (exec_instruction(PUSH_A, a, b, inst) == false)
+			if (exec_instruction(PUSH_A, a, b, ins) == false)
 			{
-				handle_error(*a, *b, *inst, NULL);
+				handle_error(*a, *b, *ins, NULL);
 			}
 			qsort->push++;
 			sorts--;
 		}
 		else
 		{
-			if (exec_instruction(ROT_B, a, b, inst) == false)
+			if (exec_instruction(ROT_B, a, b, ins) == false)
 			{
-				handle_error(*a, *b, *inst, NULL);
+				handle_error(*a, *b, *ins, NULL);
 			}
 			qsort->rot++;
 		}
@@ -78,18 +56,14 @@ void	ps_rev_qsort(t_stack **a, t_stack **b, t_list **inst, t_qsort qsort)
 	while (qsort.rot-- && qsort.big_len != qsort.len)
 	{
 		if (exec_instruction(REVROT_B, a, b, inst) == false)
-		{
 			handle_error(*a, *b, *inst, NULL);
-		}
 	}
 	qsort.len = qsort.tmp_len - qsort.push;
 	ps_rev_qsort(a, b, inst, qsort);
 	while (qsort.push--)
 	{
 		if (exec_instruction(PUSH_B, a, b, inst) == false)
-		{
 			handle_error(*a, *b, *inst, NULL);
-		}
 	}
 }
 
@@ -103,9 +77,7 @@ void	push_and_rot(t_stack **a, t_stack **b, t_list **inst, t_qsort *qsort)
 		if ((*a)->data < qsort->pivot)
 		{
 			if (exec_instruction(PUSH_B, a, b, inst) == false)
-			{
 				handle_error(*a, *b, *inst, NULL);
-			}
 			qsort->len--;
 			qsort->push++;
 			sorts--;
@@ -135,9 +107,7 @@ void	ps_qsort(t_stack **a, t_stack **b, t_list **inst, t_qsort qsort)
 	while (qsort.rot-- && qsort.big_len != qsort.len)
 	{
 		if (exec_instruction(REVROT_A, a, b, inst) == false)
-		{
 			handle_error(*a, *b, *inst, NULL);
-		}
 	}
 	ps_qsort(a, b, inst, qsort);
 	qsort.len = qsort.push;
@@ -145,8 +115,6 @@ void	ps_qsort(t_stack **a, t_stack **b, t_list **inst, t_qsort qsort)
 	while (qsort.push--)
 	{
 		if (exec_instruction(PUSH_A, a, b, inst) == false)
-		{
 			handle_error(*a, *b, *inst, NULL);
-		}
 	}
 }

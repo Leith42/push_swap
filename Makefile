@@ -21,6 +21,7 @@ GENERAL_SRC = \
 		handle_args.c \
 		handle_error.c \
 		utils.c \
+		exec_instruction.c \
 
 PUSH_SWAP_SRC = \
 		selection_sort.c \
@@ -29,6 +30,8 @@ PUSH_SWAP_SRC = \
 		op_reducer.c \
 		push_all_in_a.c \
 		push_swap.c \
+		quick_sort_hms.c \
+		op_reducer_2.c \
 
 CHECKER_SRC = \
 		checker.c \
@@ -42,7 +45,9 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_OBJ))
 PUSH_SWAP = $(addprefix $(PUSH_SWAP_PATH), $(PUSH_SWAP_OBJ))
 CHECKER = $(addprefix $(CHECKER_PATH), $(CHECKER_OBJ))
 
-all: $(TARGET_PS) $(TARGET_C)
+all: $(NAME) $(TARGET_PS) $(TARGET_C)
+
+$(NAME):
 
 $(TARGET_PS): $(SRC) $(PUSH_SWAP)
 	make -C $(LIBFT_PATH)

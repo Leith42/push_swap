@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:43:38 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:54:56 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 14:05:59 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ int	arg_validity_checker(char *arg, t_options **opt)
 	{
 		if ((arg[i] == '0' && arg[i + 1] != '\0') ||
 			(arg[0] == '-' && arg[1] == '0'))
-				return (false);
+			return (false);
 		while (arg[++i] != '\0')
-		{
 			if (ft_isdigit(arg[i]) == false)
 				return (false);
-		}
 	}
 	else if (opt && ft_strcmp(arg, "-v") == 0)
 		(*opt)->stack_refresh = true;
@@ -66,12 +64,12 @@ int	arg_validity_checker(char *arg, t_options **opt)
 		(*opt)->quick_sort = true;
 	else
 		return (false);
-	return ((*opt)->quick_sort == true && (*opt)->selection_sort == true ? false : true);
+	return ((*opt)->quick_sort && (*opt)->selection_sort ? false : true);
 }
 
 int	length_checker(char *argv[])
 {
-	int	i;
+	int				i;
 	intmax_t		arg;
 
 	i = 0;

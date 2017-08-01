@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 14:21:01 by aazri             #+#    #+#             */
-/*   Updated: 2017/06/09 14:41:57 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 15:42:33 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int		check_lists_status(t_stack **a, t_stack **b);
 void	do_we_swap(t_stack **a, t_stack **b, t_list **inst);
 int		which_rotate(t_stack *s, int min);
 int		get_pivot(t_stack *s, int len);
+int		how_many_sorts(t_stack *a, int pivot, int len);
+int		rev_how_many_sort(t_stack *a, int pivot, int len);
 
 /*
 **	PARSING
@@ -65,7 +67,7 @@ int		instructions_parsing(t_stack **a, t_stack **b, t_options *o, int *i_nb);
 int		args_parse(char *argv[], int argc, t_stack **a, t_options **opt);
 int		arg_validity_checker(char *arg, t_options **opt);
 int		duplicate_checker(char *argv[]);
-int		exec_instruction(char *command, t_stack **a, t_stack **b, t_list **inst);
+int		exec_instruction(char *command, t_stack **a, t_stack **b, t_list **ins);
 int		stack_init(char *argv[], t_stack **a);
 int		browse_arguments(char *argv[], t_options **opt);
 int		length_checker(char *argv[]);
@@ -76,7 +78,7 @@ int		stack_len(t_stack *s);
 **	UTILS
 */
 
-void	handle_error(t_stack *a, t_stack *b, t_list *instructions, t_options *o);
+void	handle_error(t_stack *a, t_stack *b, t_list *inst, t_options *o);
 void	freedom(t_stack *a, t_stack *b, t_list *i, t_options *o);
 void	clear_list(void *data, size_t n);
 void	stack_print(t_stack *a, t_stack *b);
@@ -85,5 +87,6 @@ int		get_min(t_stack *s);
 int		get_max(t_stack *s);
 int		op_reducer(t_list *op);
 void	print_instructions(t_list *i);
-
+int		do_we_delete(t_list *i);
+char	*do_we_cut(t_list *i);
 #endif

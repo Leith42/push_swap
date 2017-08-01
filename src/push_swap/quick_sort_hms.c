@@ -1,48 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freedom.c                                          :+:      :+:    :+:   */
+/*   quick_sort_hms.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/20 15:25:14 by aazri             #+#    #+#             */
-/*   Updated: 2017/07/31 13:34:53 by aazri            ###   ########.fr       */
+/*   Created: 2017/07/31 15:21:12 by aazri             #+#    #+#             */
+/*   Updated: 2017/07/31 15:22:47 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	freedom(t_stack *a, t_stack *b, t_list *i, t_options *o)
+int		how_many_sorts(t_stack *a, int pivot, int len)
 {
-	t_stack	*tmp_s;
+	int i;
 
-	while (a != NULL)
+	i = 0;
+	while (len)
 	{
-		tmp_s = a->next;
-		free(a);
-		a = tmp_s;
+		if (a->data < pivot)
+		{
+			i++;
+		}
+		a = a->next;
+		len--;
 	}
-	while (b != NULL)
-	{
-		tmp_s = b->next;
-		free(b);
-		b = tmp_s;
-	}
-	if (i != NULL)
-	{
-		ft_lstdel(&i, &clear_list);
-	}
-	if (o != NULL)
-	{
-		free(o);
-	}
+	return (i);
 }
 
-void	clear_list(void *data, size_t n)
+int		rev_how_many_sort(t_stack *a, int pivot, int len)
 {
-	if (data != NULL)
+	int i;
+
+	i = 0;
+	while (len)
 	{
-		free(data);
+		if (a->data > pivot)
+		{
+			i++;
+		}
+		a = a->next;
+		len--;
 	}
-	(void)n;
+	return (i);
 }

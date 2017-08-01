@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quick_sort_pivot.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/31 14:58:01 by aazri             #+#    #+#             */
+/*   Updated: 2017/07/31 15:24:18 by aazri            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	qs_swap(int *array, int a, int b)
@@ -22,12 +34,14 @@ static void	ft_qsort(int *array, int start, int end)
 		return ;
 	while (true)
 	{
-		while (array[--right] > pivot);
-		while (array[++left] < pivot);
-		if (left < right)
+		while (array[--right] > pivot)
 		{
-			qs_swap(array, left, right);
 		}
+		while (array[++left] < pivot)
+		{
+		}
+		if (left < right)
+			qs_swap(array, left, right);
 		else
 			break ;
 	}
@@ -62,7 +76,6 @@ int			get_pivot(t_stack *s, int len)
 	array = get_array_from_list(s, len);
 	ft_qsort(array, 0, len);
 	pivot = array[len >> 1];
-	free (array);
+	free(array);
 	return (pivot);
 }
-

@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:30:17 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:34:58 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 13:36:37 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	free_array(char **arr)
 
 static char	**get_args_array(char **argv, int argc)
 {
-	char **array;
-	int i;
+	char	**array;
+	int		i;
 
 	if (argc == 2)
 	{
@@ -57,16 +57,17 @@ static char	**get_args_array(char **argv, int argc)
 	}
 }
 
-int		args_parse(char **argv, int argc, t_stack **s, t_options **opt)
+int			args_parse(char **argv, int argc, t_stack **s, t_options **opt)
 {
 	char **array;
 
-	if ((*opt = ft_memalloc(sizeof(t_options))) == NULL ||
-		(array = get_args_array(argv, argc)) == NULL ||
-		(browse_arguments(array, opt)) == false ||
-		(length_checker(array)) == false ||
-		(duplicate_checker(array)) == false ||
-		(stack_init(array, s) == false))
+	array = NULL;
+	if (((*opt = ft_memalloc(sizeof(t_options))) == NULL) ||
+		((array = get_args_array(argv, argc)) == NULL) ||
+		((browse_arguments(array, opt)) == false) ||
+		((length_checker(array)) == false) ||
+		((duplicate_checker(array)) == false) ||
+		((stack_init(array, s) == false)))
 	{
 		free_array(array);
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:28:38 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:52:10 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 15:41:57 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,11 @@ int	gnl_loop(t_stack **a, t_stack **b, t_options *opt, int *inst_nb)
 		}
 		(*inst_nb)++;
 		if (opt->clear_screen == true)
-		{
 			ft_cls();
-		}
 		if (opt->stack_refresh == true)
-		{
 			stack_print(*a, *b);
-		}
 		if (opt->display_commands == true)
-		{
-			ft_printf("Instructions executed :\t{RED}%d{EOC}\n\n", *inst_nb);
-		}
+			ft_printf("Instructions executed :\t{GREEN}%d{EOC}\n\n", *inst_nb);
 		ft_strdel(&command);
 	}
 	return (gnl);

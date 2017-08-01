@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:23:43 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:40:00 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 15:27:36 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	display_usage(void)
 	ft_putendl("usage: ./push_swap 1 2 3 4... [-qsort] or [-ssort]");
 	ft_putendl("[-qsort]: Forces the use of a quick sort algorithm.");
 	ft_putendl("[-ssort]: Forces the use of a selection sort algorithm.");
-	ft_putendl("By default the program will choose the "
-					   "most optimized algorithm according to the number of integers.");
+	ft_putendl("By default the program will choose the most optimized algorithm"
+				"according to the number of integers.");
 }
 
 void	print_instructions(t_list *i)
@@ -53,10 +53,10 @@ int		push_swap(t_stack **a, t_stack **b, t_list **inst, t_options *options)
 
 int		main(int argc, char *argv[])
 {
-	t_stack *a;
-	t_stack *b;
-	t_list	*instructions;
-	t_options *options;
+	t_stack		*a;
+	t_stack		*b;
+	t_list		*instructions;
+	t_options	*options;
 
 	a = NULL;
 	b = NULL;
@@ -70,9 +70,7 @@ int		main(int argc, char *argv[])
 		{
 			handle_error(a, b, instructions, options);
 		}
-		//print_instructions(instructions);
-		//stack_print(a, b);
-		//printf("op len: %ld\n", ft_lstcount(instructions));
+		print_instructions(instructions);
 		freedom(a, b, instructions, options);
 	}
 	else

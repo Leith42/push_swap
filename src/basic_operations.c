@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 15:36:49 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:56:37 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 13:35:36 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		stack_push(t_stack **s_top, int data)
 {
-	t_stack *newnode;
+	t_stack	*newnode;
 
 	if ((newnode = ft_memalloc(sizeof(t_stack))) == NULL)
 		return (false);
@@ -79,9 +79,9 @@ int		descending_check(t_stack *stack)
 	return (true);
 }
 
-int 	stack_len(t_stack *s)
+int		stack_len(t_stack *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s != NULL)

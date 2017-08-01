@@ -6,7 +6,7 @@
 /*   By: aazri <aazri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:21:33 by aazri             #+#    #+#             */
-/*   Updated: 2017/05/24 16:55:13 by aazri            ###   ########.fr       */
+/*   Updated: 2017/07/31 13:38:18 by aazri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	print_result(t_stack *a, t_stack *b, t_options *o, int inst_nb)
 			ft_printf("Instructions executed :\t{GREEN}%d{EOC}\n", inst_nb);
 		}
 	}
-	ft_putendl(b == NULL && ascending_check(a) ? "\nOK" : "\nKO");
+	ft_printf(b == NULL &&
+		ascending_check(a) ? "\n{GREEN}OK{EOC}\n" : "\n{RED}KO{EOC}\n");
 }
 
 void	stack_print(t_stack *a, t_stack *b)
